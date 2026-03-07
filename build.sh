@@ -21,7 +21,7 @@ do
 
 	echo
 
-	zip -0 -r -ll "$ZIP" META-INF/ build.sh customize.sh module.prop service.sh "$SCRIPT_NAME"
+	zip -9 -r -ll "$ZIP" META-INF/ build.sh customize.sh module.prop service.sh "$SCRIPT_NAME"
 done
 
 echo " * Done!"
