@@ -1,7 +1,12 @@
 # KTweak
+
+> [!NOTE]
+> This is a fork of the original KTweak project by tytydraco. Changes maintained by Compact Orb. Check commit history for exact changes.
+
 A no-nonsense kernel tweak script for Linux and Android systems, backed by evidence.
 
 # Another "kernel optimizer"?
+
 No. Well, yes. However, a "kernel optimizer" is a poor way to put it. KTweak performs kernel adjustments based on facts and evidence, unlike other optimizers with poorly written or heavily obfuscated code.
 
 * [NFS Injector](https://github.com/Magisk-Modules-Grave/nfsinjector) uses closed source, compiled binaries with various typos in the README. It also provides a "pro" version that costs money.
@@ -11,6 +16,7 @@ No. Well, yes. However, a "kernel optimizer" is a poor way to put it. KTweak per
 * [ZeetaTweaks](https://t.me/zeetaaprojbot) is a clone of KTweak with the values changed. As of the V11 zip, it disables essential system services, deletes files permanently from /data/data, kills perfd (which is the userspace boosting daemon), disables SELinux, disables fsync, and various other detrimental changes.
 
 # What's different about KTweak?
+
 Unlike other "kernel optimizers", KTweak is:
 
 * Entirely open source with no compiled components
@@ -20,11 +26,12 @@ Unlike other "kernel optimizers", KTweak is:
 * Non-intrusive and completely systemless
 
 # Benchmarks
+
 The following benchmarks were performed on a OnePlus 7 Pro running the stock kernel provided by the OEM on Android 10. **KTweak sacrifices throughput for latency**, since latency correlates to UI / UX smoothness. This explains the slight regression with the scheduler throughput.
 
-
 ### Scheduler latency via `schbench` (lower is better)
-- Stock:
+
+* Stock:
 `50.0th: 4052
 75.0th: 14288
 90.0th: 26848
@@ -34,7 +41,7 @@ The following benchmarks were performed on a OnePlus 7 Pro running the stock ker
 99.9th: 59200
 min=0, max=73600`
 
-- KTweak:
+* KTweak:
 `50.0th: 1054
 75.0th: 1790
 90.0th: 2628
@@ -45,22 +52,23 @@ min=0, max=73600`
 min=0, max=32781`
 
 ### Synthmark Latencymark (lower is better)
-- Stock: 10 / 12
-- KTweak: 4 / 4
+
+* Stock: 10 / 12
+
+* KTweak: 4 / 4
 
 ### Scheduler throughput via `perf bench sched messaging` (lower is better)
-- Stock: 0.331 seconds
-- KTweak: 0.808 seconds
+
+* Stock: 0.331 seconds
+
+* KTweak: 0.808 seconds
 
 ### Scheduler throughput via `perf bench sched pipe` (lower is better)
-- Stock: 16.159 seconds
-- KTweak: 18.599 seconds
+
+* Stock: 16.159 seconds
+
+* KTweak: 18.599 seconds
 
 # The Tweaks
+
 Head over to the [script itself](ktweak) to learn what everything does. It is documented in the comments.
-
-# Contact
-You can find me on telegram at @tytydraco.
-Feel free to email me at tylernij@gmail.com.
-
-Join the releases channel at @ktweak, or the discussion channel at @ktweak_discussion.
