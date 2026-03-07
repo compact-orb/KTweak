@@ -5,5 +5,6 @@ do
        sleep 5
 done
 
+MODDIR=${0%/*}
 sleep 30
-ktweak
+"$MODDIR/ktweak"

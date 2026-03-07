@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
 BRANCHES=(balance budget latency throughput)
-SCRIPT_PARENT_PATH="system/bin"
 SCRIPT_NAME="ktweak"
-SCRIPT_PATH="$SCRIPT_PARENT_PATH/$SCRIPT_NAME"
+SCRIPT_PATH="$SCRIPT_NAME"
 
-mkdir -p "$SCRIPT_PARENT_PATH"
 rm -rf KTweak-MM*.zip
 
 for branch in ${BRANCHES[@]}
@@ -23,7 +21,7 @@ do
 
 	echo
 
-	zip -0 -r -ll "$ZIP" META-INF/ build.sh customize.sh module.prop service.sh system/
+	zip -0 -r -ll "$ZIP" META-INF/ build.sh customize.sh module.prop service.sh "$SCRIPT_NAME"
 done
 
 echo " * Done!"
