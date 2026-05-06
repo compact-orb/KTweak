@@ -108,6 +108,12 @@ write /proc/sys/vm/swappiness 200
 # Fairly prioritize page cache and file structures
 write /proc/sys/vm/vfs_cache_pressure 100
 
+# Set default queueing discipline to fq
+write /proc/sys/net/core/default_qdisc fq
+
+# Set TCP congestion control algorithm to bbr
+write /proc/sys/net/ipv4/tcp_congestion_control bbr
+
 # Enable Explicit Congestion Control
 write /proc/sys/net/ipv4/tcp_ecn 1
 
