@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  RELEASE_VERSION: "2.2"
+  RELEASE_VERSION: "2.3"
 
 permissions:
   contents: write
@@ -35,4 +35,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "v${{ env.RELEASE_VERSION }}-compact-orb" KTweak-MM-*.zip
+          gh release create "v${{ env.RELEASE_VERSION }}-compactorb" KTweak-MM-*.zip
