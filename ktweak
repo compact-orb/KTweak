@@ -4,9 +4,6 @@
 # The name of the current branch for logging purposes
 BRANCH="budget"
 
-# Maximum unsigned integer size in C
-UINT_MAX="4294967295"
-
 # Duration in nanoseconds of one scheduling period
 SCHED_PERIOD="$((5 * 1000 * 1000))"
 
@@ -141,47 +138,10 @@ then
 	write /dev/stune/top-app/schedtune.boost 0
 fi
 
-# Loop over each CPU in the system
+# Loop over each CPU in the system and set governor to performance
 for cpu in /sys/devices/system/cpu/cpu*/cpufreq
 do
-	# Fetch the available governors from the CPU
-	avail_govs="$(cat "$cpu/scaling_available_governors")"
-
-	# Attempt to set the governor in this order
-	for governor in schedutil interactive
-	do
-		# Once a matching governor is found, set it and break for this CPU
-		if [[ "$avail_govs" == *"$governor"* ]]
-		then
-			write "$cpu/scaling_governor" "$governor"
-			break
-		fi
-	done
-done
-
-# Apply governor specific tunables for schedutil
-find /sys/devices/system/cpu/ -name schedutil -type d | while IFS= read -r governor
-do
-	# Consider changing frequencies once per scheduling period
-	write "$governor/up_rate_limit_us" "$((SCHED_PERIOD / 1000))"
-	write "$governor/down_rate_limit_us" "$((SCHED_PERIOD / 1000))"
-	write "$governor/rate_limit_us" "$((SCHED_PERIOD / 1000))"
-
-	# Jump to hispeed frequency at this load percentage
-	write "$governor/hispeed_load" 99
-	write "$governor/hispeed_freq" "$UINT_MAX"
-done
-
-# Apply governor specific tunables for interactive
-find /sys/devices/system/cpu/ -name interactive -type d | while IFS= read -r governor
-do
-	# Consider changing frequencies once per scheduling period
-	write "$governor/timer_rate" "$((SCHED_PERIOD / 1000))"
-	write "$governor/min_sample_time" "$((SCHED_PERIOD / 1000))"
-
-	# Jump to hispeed frequency at this load percentage
-	write "$governor/go_hispeed_load" 99
-	write "$governor/hispeed_freq" "$UINT_MAX"
+	write "$cpu/scaling_governor" "performance"
 done
 
 for queue in /sys/block/*/queue
