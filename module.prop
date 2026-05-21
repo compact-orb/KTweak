@@ -1,6 +1,6 @@
 id=ktweak
 name=KTweak
-version=2.3-compactorb
-versionCode=5
+version=2.4-compactorb
+versionCode=6
 author=tytydraco, compact-orb
 description=Reduce scheduler latency and system stutters.
